@@ -1,58 +1,45 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div>
+    <JqxGrid :width="'98%'" :source="dataAdapter" :columns="columns" :sortable="true"/>
   </div>
 </template>
 
 <script>
+import JqxGrid from 'jqwidgets-scripts/jqwidgets-vue/vue_jqxgrid.vue';
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  data:()=>({
+    dataAdapter: {
+      localdata: [
+                 ['Maria Anders', 'Sales Representative', 'Berlin', 'Germany'],
+                 ['Ana Trujillo', 'Owner', 'Mxico D.F.', 'Mexico'],
+                 ['Antonio Moreno', 'Owner', 'Mxico D.F.', 'Mexico'],
+                 ['Thomas Hardy', 'Sales Representative', 'London', 'UK'],
+                 ['Christina Berglund', 'Order Administrator', 'Lule', 'Sweden'],
+                 ['Hanna Moos', 'Sales Representative', 'Mannheim', 'Germany'],
+                 ['Frdrique Citeaux', 'Marketing Manager', 'Strasbourg', 'France'],
+                 ['Martn Sommer', 'Owner', 'Madrid', 'Spain'],
+                 ['Laurence Lebihan', 'Owner', 'Marseille', 'France'],
+                 ['Elizabeth Lincoln', 'Accounting Manager', 'Tsawassen', 'Canada'],
+                 ['Victoria Ashworth', 'Sales Representative', 'London', 'UK'],
+                 ['Patricio Simpson', 'Sales Agent', 'Buenos Aires', 'Argentina']
+             ],
+             datafields: [
+                 { name: 'ContactName', type: 'string', map: '0' },
+                 { name: 'Title', type: 'string', map: '1' },
+                 { name: 'City', type: 'string', map: '2' },
+                 { name: 'Country', type: 'string', map: '3' }
+             ],
+             datatype: 'array'
+    },
+    columns: [
+        { text: 'Contact Name', datafield: 'ContactName', width: 240, sortable: false },
+        { text: 'Contact Title', datafield: 'Title', width: 240 },
+        { text: 'City', datafield: 'City', width: 150 },
+        { text: 'Country', datafield: 'Country' }
+    ]
+  }),
+  components:{
+    JqxGrid
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
